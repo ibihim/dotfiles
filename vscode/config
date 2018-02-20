@@ -1,0 +1,14 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.fontSize": 14,
+    "files.autoSave": "afterDelay",
+    "terminal.external.linuxExec": "terminator",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.shell.linux": "/bin/zsh",
+    "terminal.integrated.fontFamily": "Source Code Pro for Powerline",
+    // window zoom level >>> fontSize@everywhere
+    "window.zoomLevel": 2,
+    "workbench.colorTheme": "Darcula",
+    "go.gopath": "/home/ibihim/workspace/go"
+}
+
