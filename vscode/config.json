@@ -6,9 +6,12 @@
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.shell.linux": "/bin/zsh",
     "terminal.integrated.fontFamily": "Source Code Pro for Powerline",
-    // window zoom level >>> fontSize@everywhere
     "window.zoomLevel": 2,
     "workbench.colorTheme": "Darcula",
-    "go.gopath": "/home/ibihim/workspace/go"
+    "go.gopath": "/home/ibihim/workspace/go",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "editor.renderWhitespace": "all",
+    "window.title": "${activeEditorMedium}",
+    "gitlens.keymap": "alternate"
 }
-
