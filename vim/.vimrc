@@ -4,10 +4,10 @@ if &compatible
 endif
 
 " Required:
-set runtimepath^=/Users/ibihim/.vim/bundle/neobundle.vim/
+set runtimepath^=/home/ibihim/.vim/bundle/neobundle.vim/
 
 " Required:
-call neobundle#begin(expand('/Users/ibihim/.vim/bundle'))
+call neobundle#begin(expand('/home/ibihim/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
