@@ -22,6 +22,7 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'fatih/vim-go'
 
 "Ultisnips conf
 let g:UltiSnipsExpandTrigger='<tab>'
