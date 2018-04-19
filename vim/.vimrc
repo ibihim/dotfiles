@@ -30,6 +30,10 @@ let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/ultisnips']
 
+autocmd InsertEnter * :set cursorcolumn
+autocmd InsertEnter * :set cursorline
+set rtp+=/usr/bin/fzf
+
 " Add or remove your Bundles here:
 " NeoBundle 'Shougo/neosnippet.vim'
 " NeoBundle 'Shougo/neosnippet-snippets'
