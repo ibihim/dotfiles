@@ -34,6 +34,9 @@ autocmd InsertEnter * :set cursorcolumn
 autocmd InsertEnter * :set cursorline
 set rtp+=/usr/bin/fzf
 
+set list
+set listchars=tab:⇥⇥,trail:·,eol:⇐⇐
+
 " Add or remove your Bundles here:
 " NeoBundle 'Shougo/neosnippet.vim'
 " NeoBundle 'Shougo/neosnippet-snippets'
