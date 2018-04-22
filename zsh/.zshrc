@@ -95,12 +95,19 @@ fi
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
+NPM_PACKAGES="${HOME}/.npm-packages"
+if [ ! -f $NPM_PACKAGES ]; then
+    mkdir -p $NPM_PACKAGES
+    echo "prefix=$NPM_PACKAGES" > .npmrc
+fi
+
 export GOPATH=$HOME/workspace/go
 export GOBIN=$GOPATH/bin
 export CHROME_BIN=/usr/bin/chromium
-export PATH=$PATH:$GOPATH/bin
 export CDPATH=$GOPATH/src/github.com
-export EDITOR=vim
+export PATH=$PATH:$GOPATH/bin:$NPM_PACKAGES/bin
+
+export EDITOR=emacs
 
 DEFAULT_USER=ibihim
 
@@ -114,4 +121,3 @@ DEFAULT_USER=ibihim
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lock="i3lock -i ~/Pictures/lock.png"
 alias pbcopy='xclip -sel clip'
-
