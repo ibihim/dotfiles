@@ -121,3 +121,5 @@ DEFAULT_USER=ibihim
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lock="i3lock -i ~/Pictures/lock.png"
 alias pbcopy='xclip -sel clip'
+alias screenshot='import -window root /tmp/screenshot.jpg'
+
