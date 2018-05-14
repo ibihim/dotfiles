@@ -14,4 +14,8 @@
     "editor.renderWhitespace": "all",
     "window.title": "${activeEditorMedium}",
     "gitlens.keymap": "alternate"
+    "vim.useCtrlKeys": false,
+    "vim.useSystemClipboard": true,
+    "vim.cmdLineInitialColon": true,
+    "vim.hlsearch": true,
 }
