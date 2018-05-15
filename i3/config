@@ -177,6 +177,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 # wallpaper
 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper ~/Pictures/wallpaper
 
+# compton
+exec --no-startup-id exec --no-startup-id compton --config ~/.config/compton.conf
+
 # conky
 exec --no-startup-id conky -c /home/ibihim/.config/conky/conky_green
 exec --no-startup-id conky -c /home/ibihim/.config/conky/conky_shortcuts_live_green
