@@ -150,6 +150,10 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
+" transparent
+" highlight Normal guibg=NONE ctermbg=NONE
+" highlight NonText guibg=NONE ctermbg=NONE
+
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T
