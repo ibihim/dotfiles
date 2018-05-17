@@ -30,13 +30,6 @@ let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/ultisnips']
 
-autocmd InsertEnter * :set cursorcolumn
-autocmd InsertEnter * :set cursorline
-set rtp+=/usr/bin/fzf
-
-set list
-set listchars=tab:⇥⇥,trail:·,eol:⇐⇐
-
 " Add or remove your Bundles here:
 " NeoBundle 'Shougo/neosnippet.vim'
 " NeoBundle 'Shougo/neosnippet-snippets'
@@ -57,6 +50,52 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Personal
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd InsertEnter * :set cursorcolumn
+autocmd InsertEnter * :set cursorline
+set rtp+=/usr/bin/fzf
+
+set list
+set listchars=tab:⇥⇥,trail:·,eol:⇐⇐
+
+" Enable syntax highlighting
+syntax enable
+
+"molokai colorscheme
+" colorscheme molokai
+" set background=dark
+
+" solarized colorscheme
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+" transparent
+" highlight Normal guibg=NONE ctermbg=NONE
+" highlight NonText guibg=NONE ctermbg=NONE
+
+set updatetime = 200
+
+let g:go_fmt_command = "goimports"
+let g:go_auto_sameids = 1
+let g:go_decls_include = "func, type"
+let g:go_play_browser_command = "firefox"
+let g:go_auto_type_info = 1
+
+autocmd FileType go nmap <Leader>t <Plug>(go-test)
+autocmd FileType go nmap <Leader>b <Plug>(go-build)
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+let g:go_highlight_types=1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_trypes = 1
+let g:go_highlight_build_constraints = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -138,21 +177,8 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable syntax highlighting
-syntax enable
 
-"molokai colorscheme
-" colorscheme molokai
-" set background=dark
-
-" solarized colorscheme
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
-
-" transparent
-" highlight Normal guibg=NONE ctermbg=NONE
-" highlight NonText guibg=NONE ctermbg=NONE
+" Parts of it in #Personal
 
 " Set extra options when running in GUI mode
 if has("gui_running")
