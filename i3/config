@@ -193,6 +193,12 @@ exec --no-startup-id xmodmap -e "pointer = 3 2 1"
 # natural touchpad scrolling
 exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-111
 
+# adds screen brightness depending on real life env
+exec --no-startup-id redshift-gtk
+
+# adds bluetooth applet icon
+exec --no-startup-id blueman-applet
+
 # enable second screen
 #INTERNAL_OUTPUT="eDP-1"
 #EXTERNAL_OUTPUT="HDMI-1"
