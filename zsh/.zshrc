@@ -82,25 +82,13 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Starting ssh-agent if there is not one already, and save the output
-# therof. If there is one running already, we retrieve the cached
-# ssh-agent output and evaluate it which will set the necessary
-# environment variables.
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh-agent-thing
-fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval "$(<~/.ssh-agent-thing)"
-fi
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 NPM_PACKAGES="${HOME}/.npm-packages"
 if [ ! -f $NPM_PACKAGES ]; then
     mkdir -p $NPM_PACKAGES
     echo "prefix=$NPM_PACKAGES" > .npmrc
 fi
 
+export GOROOT=/usr/lib/go
 export GOPATH=$HOME/workspace/go
 export GOBIN=$GOPATH/bin
 export CHROME_BIN=/usr/bin/chromium
@@ -124,3 +112,15 @@ alias pbcopy='xclip -sel clip'
 alias screenshot='import -window root /tmp/screenshot.jpg'
 alias crop='scrot -s'
 
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $GOPATH/src/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
+
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye > /dev/null
