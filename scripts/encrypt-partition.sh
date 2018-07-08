@@ -7,7 +7,7 @@
 #  - cipher aes-xts-plain64
 #  - key-size 512
 
-DEVICE_NAME=crypto
+DEVICE_NAME=crypt-usb
 
 # Convert partition to LUKS format
 sudo cryptsetup --verbose --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 4000 --use-random luksFormat $1
