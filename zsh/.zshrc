@@ -111,6 +111,7 @@ alias lock="i3lock -i ~/Pictures/lock.png"
 alias pbcopy='xclip -sel clip'
 alias screenshot='import -window root /tmp/screenshot.jpg'
 alias crop='scrot -s'
+alias gl="git log --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%C(yellow)%d %Cblue%an%C(magenta) (%GK)%C(reset) %s %Cgreen%cr'"
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
