@@ -48,6 +48,10 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# Start Application
+bindsym $mod+F3 exec nautilus
+bindsym $mod+Shift+F3 exec gksu nautilus
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -166,7 +170,10 @@ bar {
 
 exec --no-startup-id volumeicon
 bindsym $mod+Ctrl+m exec temrinal -e 'alsamixer'
+
+# Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="(?i)vritrualbox"] floating enable border normal
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
