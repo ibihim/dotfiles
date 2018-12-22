@@ -59,7 +59,7 @@ autocmd InsertEnter * :set cursorline
 set rtp+=/usr/bin/fzf
 
 set list
-set listchars=tab:⇥⇥,trail:·,eol:⇐⇐
+set listchars=tab:⇥⇥,trail:·,eol:⇐
 
 " Enable syntax highlighting
 syntax enable
@@ -77,7 +77,7 @@ colorscheme solarized
 " highlight Normal guibg=NONE ctermbg=NONE
 " highlight NonText guibg=NONE ctermbg=NONE
 
-set updatetime = 200
+set updatetime=200
 
 let g:go_fmt_command = "goimports"
 let g:go_auto_sameids = 1
