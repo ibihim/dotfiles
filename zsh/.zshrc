@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/ibihim/.oh-my-zsh
+export ZSH=/home/ibihim/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -61,6 +61,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 plugins=(
   git
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -95,7 +96,7 @@ export CHROME_BIN=/usr/bin/chromium
 export CDPATH=$GOPATH/src/github.com
 export PATH=$PATH:$GOPATH/bin:$NPM_PACKAGES/bin
 
-export EDITOR=emacs
+export EDITOR=vim
 
 DEFAULT_USER=ibihim
 
@@ -112,11 +113,11 @@ alias pbcopy='xclip -sel clip'
 alias screenshot='import -window root /tmp/screenshot.jpg'
 alias crop='scrot -s'
 alias gl="git log --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%C(yellow)%d %Cblue%an%C(magenta) (%GK)%C(reset) %s %Cgreen%cr'"
+alias goplay='cd $(mktemp -d) && $EDITOR main.go && go run main.go'
+alias v='nvim'
+alias cdtemp='cd $(mktemp -d)'
 
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $GOPATH/src/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
