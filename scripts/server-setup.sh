@@ -27,7 +27,7 @@ sudo passwd -l root
 # Install packages
 ##########################################################################
 
-sudo apt install zsh vim curl git docker.io ufw mosh
+sudo apt install zsh vim curl git docker.io ufw mosh autojump
 
 ##########################################################################
 # SSH hardening
