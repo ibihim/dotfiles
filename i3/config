@@ -76,6 +76,13 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# border toggle
+bindsym $mod+c border toggle
+
+# scratchpad
+bindsym $mod+m move scratchpad
+bindsym $mod+o scratchpad show
+
 # split in horizontal orientation
 bindsym $mod+b split h
 
@@ -168,7 +175,6 @@ bar {
         status_command i3status
 }
 
-exec --no-startup-id volumeicon
 bindsym $mod+Ctrl+m exec temrinal -e 'alsamixer'
 
 # Open specific applications in floating mode
@@ -184,11 +190,14 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
+# volumeicon
+exec --no-startup-id volumeicon
+
 # wallpaper
 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper ~/Pictures/wallpaper
 
 # compton
-exec --no-startup-id exec --no-startup-id compton --config ~/.config/compton.conf
+exec --no-startup-id compton -b --config ~/.config/compton.conf
 
 # conky
 exec --no-startup-id conky -c /home/ibihim/.config/conky/conky_green
@@ -204,16 +213,18 @@ exec --no-startup-id xmodmap -e "pointer = 3 2 1"
 exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-111
 
 # adds screen brightness depending on real life env
-exec --no-startup-id redshift-gtk
+exec --no-startup-id redshift-gtk &
+
+# Notifications
+exec --no-startup-id dunst &
 
 # adds bluetooth applet icon
-exec --no-startup-id blueman-applet
+exec --no-startup-id blueman-applet &
 
-# enable second screen
-#INTERNAL_OUTPUT="eDP-1"
-#EXTERNAL_OUTPUT="HDMI-1"
-# exec --no-startup-id xrandr --output "$INTERNAL_OUTPUT" --auto --output "$EXTERNAL_OUTPUT" --auto --left-of "$INTERNAL_OUTPUT"
-bindsym $mod+Shift+s exec --no-startup-id /home/ibihim/scripts/monitor.sh
+# palm detection
+exec --no-startup-id synclient PalmDetect=1
+exec --no-startup-id synclient PalmMinWidth=4
+exec --no-startup-id synclient PalmMinZ=100
 
 # workplace setup
 exec --no-startup-id i3-msg 'workspace 3; exec firefox; workspace 1; exec terminator; workspace 5; exec thunderbird; workspace 4; workspace 2; exec code;'
