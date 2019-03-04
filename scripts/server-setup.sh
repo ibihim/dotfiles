@@ -12,7 +12,7 @@ add-apt-repository ppa:wireguard/wireguard
 apt update -y
 apt upgrade -y
 
-sudo apt install zsh tmux vim curl git docker.io ufw mosh autojump fail2ban unattended-upgrades nmap wireguard
+sudo apt install zsh tmux vim curl git docker.io ufw mosh autojump fail2ban unattended-upgrades nmap wireguard resolvconf linux-headers-generic
 
 ##########################################################################
 # Install packages
