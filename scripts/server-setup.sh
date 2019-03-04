@@ -5,17 +5,14 @@
 passwd
 
 ##########################################################################
-# Update system
-##########################################################################
-
-apt update -y
-apt upgrade -y
-
-##########################################################################
 # Install packages
 ##########################################################################
 
-sudo apt install zsh tmux vim curl git docker.io ufw mosh autojump fail2ban unattended-upgrades nmap
+add-apt-repository ppa:wireguard/wireguard
+apt update -y
+apt upgrade -y
+
+sudo apt install zsh tmux vim curl git docker.io ufw mosh autojump fail2ban unattended-upgrades nmap wireguard
 
 ##########################################################################
 # Install packages
