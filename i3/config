@@ -53,10 +53,10 @@ bindsym $mod+F3 exec nautilus
 bindsym $mod+Shift+F3 exec gksu nautilus
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -191,26 +191,29 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # volumeicon
-exec --no-startup-id volumeicon
+exec --no-startup-id volumeicon &
+
+# network manager applet
+exec --no-startup-id nm-applet &
 
 # wallpaper
-exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper ~/Pictures/wallpaper
+exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper &
+
+# dropdown terminal
+exec --no-startup-id guake &
 
 # compton
-exec --no-startup-id compton -b --config ~/.config/compton.conf
+exec --no-startup-id compton -b --config ~/.config/compton.conf &
 
 # conky
-exec --no-startup-id conky -c /home/ibihim/.config/conky/conky_green
-exec --no-startup-id conky -c /home/ibihim/.config/conky/conky_shortcuts_live_green
-
-# background for desktop
-exec --no-startup-id feh --bg-scale /home/ibihim/Pictures/wallpaper.png
+exec --no-startup-id conky -c /home/ibihim/.config/conky/conky_green &
+exec --no-startup-id conky -c /home/ibihim/.config/conky/conky_shortcuts_live_green &
 
 # mouse buttons change
 exec --no-startup-id xmodmap -e "pointer = 3 2 1"
 
 # natural touchpad scrolling
-exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-111
+exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-111 &
 
 # adds screen brightness depending on real life env
 exec --no-startup-id redshift-gtk &
@@ -222,16 +225,17 @@ exec --no-startup-id dunst &
 exec --no-startup-id blueman-applet &
 
 # palm detection
-exec --no-startup-id synclient PalmDetect=1
-exec --no-startup-id synclient PalmMinWidth=4
-exec --no-startup-id synclient PalmMinZ=100
+exec --no-startup-id synclient PalmDetect=1 &
+exec --no-startup-id synclient PalmMinWidth=4 &
+exec --no-startup-id synclient PalmMinZ=100 &
 
 # workplace setup
-exec --no-startup-id i3-msg 'workspace 3; exec firefox; workspace 1; exec terminator; workspace 5; exec thunderbird; workspace 4; workspace 2; exec code;'
+exec --no-startup-id i3-msg 'workspace 3; exec firefox; workspace 1; exec terminator; workspace 5; exec thunderbird; workspace 4; workspace 2; exec code;' &
 # exec --no-startup-id i3-msg 'workspace 2; exec idea; workspace 1'
 # exec --no-startup-id i3-msg 'workspace 3; exec firefox; workspace 1'
 # exec --no-startup-id i3-msg 'workspace 4; exec firefox gesundheitscloud.slack.com'
 # exec --no-startup-id i3-msg 'workspace 5; exec thunderbird'
+
 # placing workplace
 workspace 2 output HDMI-1
 workspace 3 output HDMI-1
@@ -243,13 +247,13 @@ bindsym $mod+9 exec --no-startup-id blurlock
 bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"    
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"    
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"    
-    bindsym e exec --no-startup-id i3exit logout, mode "default"    
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"    
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"    
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"    
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
