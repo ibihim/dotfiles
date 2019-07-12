@@ -59,7 +59,7 @@ autocmd InsertEnter * :set cursorline
 set rtp+=/usr/bin/fzf
 
 set list
-set listchars=tab:⇥⇥,trail:·,eol:⇐
+set listchars=tab:⇥\ ,trail:·,eol:⇐
 
 " Enable syntax highlighting
 syntax enable
@@ -242,9 +242,8 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 map j gj
 map k gk
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
+map <space> :bnext<CR>
+map <c-space> :bprev<CR>
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
