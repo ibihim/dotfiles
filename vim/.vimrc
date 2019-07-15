@@ -234,6 +234,16 @@ set wrap "Wrap lines
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
+""""""""""""""""""""""""""""""""""
+" => netrw customization
+""""""""""""""""""""""""""""""""""
+
+" Open stuff from netrw in different window
+let g:netrw_browse_split = 4
+
+" netrw window size
+let g:netrw_winsize = 20
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
