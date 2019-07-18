@@ -13,29 +13,21 @@ call neobundle#begin(expand('/home/ibihim/.vim/bundle'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'shougo/deoplete.nvim'
+NeoBundle 'sirver/ultisnips'
+NeoBundle 'fatih/vim-go'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'sirver/ultisnips'
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'fatih/vim-go'
-
-"Ultisnips conf
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/ultisnips']
-
-" Add or remove your Bundles here:
-" NeoBundle 'Shougo/neosnippet.vim'
-" NeoBundle 'Shougo/neosnippet-snippets'
-" NeoBundle 'tpope/vim-fugitive'
-" NeoBundle 'ctrlpvim/ctrlp.vim'
-" NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'sirver/ultisnips'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -51,34 +43,21 @@ filetype plugin indent on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Personal
+" => UltiSnip
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd InsertEnter * :set cursorcolumn
-autocmd InsertEnter * :set cursorline
-set rtp+=/usr/bin/fzf
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/ultisnips']
 
-set list
-set listchars=tab:⇥\ ,trail:·,eol:⇐
+" => deoplete.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:deoplete#enable_at_startup = 1
 
-" Enable syntax highlighting
-syntax enable
+" => Vim-Go
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"molokai colorscheme
-" colorscheme molokai
-" set background=dark
-
-" solarized colorscheme
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
-
-" transparent
-" highlight Normal guibg=NONE ctermbg=NONE
-" highlight NonText guibg=NONE ctermbg=NONE
-
-set updatetime=200
-
+let g:go_snippet_engine = "ultisnips"
 let g:go_fmt_command = "goimports"
 let g:go_auto_sameids = 1
 let g:go_decls_include = "func, type"
@@ -97,11 +76,36 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_trypes = 1
 let g:go_highlight_build_constraints = 1
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Personal
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set cursorline
+highlight CursorLine ctermbg=darkblue guibg=darkblue guifg=white
+
+set list
+set listchars=tab:⇥\ ,trail:·,eol:⇐
+
+" Enable syntax highlighting
+syntax enable
+
+" solarized colorscheme
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+map <C-n> :NERDTreeToggle<CR>
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set updatetime 200
+
 " Sets how many lines of history VIM has to remember
-set history=700
+set history=1000
 
 " Enable filetype plugins
 filetype plugin on
@@ -275,6 +279,13 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
+
+" Windows resizing
+map <leader>e <C-w>=<cr>
+map <leader>h <C-w>5<<cr>
+map <leader>l <C-w>5><cr>
+map <leader>k <C-w>5+<cr>
+map <leader>j <C-w>5-<cr>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
