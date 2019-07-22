@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-alias tmux='tmux -2 -f ~/.config/tmux/tmux.conf'
-
-DIR_NAME=$(basename $PWD)
+DIR_NAME=${PWD##*/}
 SESSION_EXISTS=$(tmux ls | grep $DIR_NAME)
 
 echo SESSION_EXISTS: $SESSION_EXISTS

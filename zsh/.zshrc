@@ -86,17 +86,21 @@ source $ZSH/oh-my-zsh.sh
 NPM_PACKAGES="${HOME}/.npm-packages"
 if [ ! -f $NPM_PACKAGES ]; then
     mkdir -p $NPM_PACKAGES
-    echo "prefix=$NPM_PACKAGES" > .npmrc
 fi
 
+if command -v most > /dev/null 2>&1; then
+    export PAGER=most
+fi
+export TERM="xterm-256color"
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/workspace/go
 export GOBIN=$GOPATH/bin
 export CHROME_BIN=/usr/bin/chromium
 export CDPATH=$GOPATH/src/github.com
 export PATH=$PATH:$GOPATH/bin:$NPM_PACKAGES/bin
-
-export EDITOR=vim
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export EDITOR=nvim
 
 DEFAULT_USER=ibihim
 
@@ -108,12 +112,10 @@ DEFAULT_USER=ibihim
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias lock="i3lock -i ~/Pictures/lock.png"
 alias pbcopy='xclip -sel clip'
 alias screenshot='import -window root /tmp/screenshot.jpg'
 alias crop='scrot -s'
 alias gl="git log --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%C(yellow)%d %Cblue%an%C(magenta) (%GK)%C(reset) %s %Cgreen%cr'"
-alias bwul='export BW_SESSION=$(bw unlock --raw); [ $BW_SESSION=="Invalid master password." ] && echo $BW_SESSION'
 alias goplay='cd $(mktemp -d) && $EDITOR main.go && go run main.go'
 alias v='nvim'
 alias cdtemp='cd $(mktemp -d)'
@@ -125,7 +127,7 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
     export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
 
-[ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh
+[ -f /usr/share/autojump/autojump.zsh ] && source /usr/share/autojump/autojump.zsh
 
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye > /dev/null

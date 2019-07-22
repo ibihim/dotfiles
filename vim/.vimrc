@@ -1,3 +1,7 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "NeoBundle Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
@@ -25,9 +29,6 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'sirver/ultisnips'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -64,9 +65,9 @@ let g:go_decls_include = "func, type"
 let g:go_play_browser_command = "firefox"
 let g:go_auto_type_info = 1
 
-autocmd FileType go nmap <Leader>t <Plug>(go-test)
-autocmd FileType go nmap <Leader>b <Plug>(go-build)
-autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <Leader>gt <Plug>(go-test)
+autocmd FileType go nmap <Leader>gb <Plug>(go-build)
+autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
 
 let g:go_highlight_types=1
 let g:go_highlight_fields = 1
@@ -78,31 +79,10 @@ let g:go_highlight_build_constraints = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Personal
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set cursorline
-highlight CursorLine ctermbg=darkblue guibg=darkblue guifg=white
-
-set list
-set listchars=tab:⇥\ ,trail:·,eol:⇐
-
-" Enable syntax highlighting
-syntax enable
-
-" solarized colorscheme
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
-
-map <C-n> :NERDTreeToggle<CR>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set updatetime 200
+set updatetime=200
 
 " Sets how many lines of history VIM has to remember
 set history=1000
@@ -113,14 +93,6 @@ filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
-
-" Fast saving
-nmap <leader>w :w!<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -256,9 +228,6 @@ let g:netrw_winsize = 20
 map j gj
 map k gk
 
-map <space> :bnext<CR>
-map <c-space> :bprev<CR>
-
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
@@ -280,12 +249,8 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 
-" Windows resizing
-map <leader>e <C-w>=<cr>
-map <leader>h <C-w>5<<cr>
-map <leader>l <C-w>5><cr>
-map <leader>k <C-w>5+<cr>
-map <leader>j <C-w>5-<cr>
+
+" Opens a new tab with the current buffer's path
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -377,8 +342,8 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 "
 map <leader>cc :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+map <leader>cn :cn<cr>
+map <leader>cp :cp<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -398,14 +363,13 @@ map <leader>s? z=
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <Leader>wm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -468,4 +432,79 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
-set nu
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Personal
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set cursorline
+highlight CursorLine ctermbg=darkblue guibg=darkblue guifg=white
+
+set list
+set listchars=tab:⇥\ ,trail:·,eol:⇐
+
+" Enable syntax highlighting
+syntax enable
+
+" solarized colorscheme
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+map <leader>m :NERDTreeToggle<CR>
+
+set foldmethod=syntax
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" Windows movement
+map <leader>j <C-W>j
+map <leader>k <C-W>k
+map <leader>h <C-W>h
+map <leader>l <C-W>l
+
+" Windows resizing
+map <leader>we <C-w>=<cr>
+map <leader>wh <C-w>5<<cr>
+map <leader>wl <C-w>5><cr>
+map <leader>wk <C-w>5+<cr>
+map <leader>wj <C-w>5-<cr>
+
+" Buffer rotation
+map <leader>b :bnext<CR>
+map <leader>B :bprev<CR>
+
+" Splitting
+map <leader>v <C-w>v
+map <leader>s <C-w>s
+
+" System clipboard
+vmap <leader>y "+y
+vmap <leader>d "+d
+nmap <leader>p "+p
+nmap <leader>P "+P
+vmap <leader>p "+p
+vmap <leader>P "+P
+
+" Fold toggle
+nmap <leader>z za
+
+" Clear search
+nmap <leader>, :nohlsearch<CR>
+
+" Background rotation
+map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+
+set number
+set relativenumber
+
+augroup toggle_relative_number
+autocmd InsertEnter * :setlocal norelativenumber
+autocmd InsertLeave * :setlocal relativenumber
+
