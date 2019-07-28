@@ -321,10 +321,10 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 vnoremap <silent> gv :call VisualSelection('gv')<CR>
 
 " Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+" map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 " Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+" map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
@@ -501,10 +501,44 @@ nmap <leader>, :nohlsearch<CR>
 " Background rotation
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
+" Relative Number in normal mode, absolute numbers in insert mode.
 set number
 set relativenumber
-
 augroup toggle_relative_number
-autocmd InsertEnter * :setlocal norelativenumber
-autocmd InsertLeave * :setlocal relativenumber
+    autocmd InsertEnter * :setlocal norelativenumber
+    autocmd InsertLeave * :setlocal relativenumber
+
+" vimgrep and simple rotation.
+map <leader>g :vimgrep
+map <leader>c :cn<cr>
+map <leader>C :cp<cr>
+map <leader>cl :clist<cr>
+
+" Notes
+" Visual Block Mode: C-V, to use c, i, x or d, use upper case.
+" Read: :r file.txt, to read a file. :r !ls to read output of ls.
+" Search current word: Press /, while cursor is on the word. Press C-r, C-w.
+" Netrw: % create new file in current dir, R renames, D deletes, X executes file.i
+" Modifiers: <Verb><?Modifier><Noun>
+"   - Modifier can be numbers (times), i(nner), a(round), t(ill), /(pattern match), f(jump to the found place).
+"   - Nouns can be w, e, b, h, j, k, l, $, 0 (classic), s(entence), p(aragraph), t(ag), b(lock), [ ] { } ( ) " ' ` < >
+" Fold: zo - open, zc - close, za - toggle, zm - more folding, zr - less folding, zR stop
+"   folding.
+"   - Folding strategy needs to be set (indent, syntax, manual, ...).
+"       - Example: set foldmethod=syntax
+" Vimgrep: :vimgrep <search term> <files>, <files> can use **/*.go logic.
+" Registers: There are several registers.
+"   - system: "+ . Sometimes "* too.
+"   - named registers: "a-z, should suffice.
+"   - others: not really needed.
+"   - usage: "a5y. Copies the next 5 lines into register a.
+" Global command: g/pattern/command. Behaves like search, but expects a command, like d or a macro (e.g., normal @a).
+" Macros: qa<commands>q, while a can be any named storage from a to z.
+"   - Commands can contain call of the macro itself: recursion.
+"   - Clear macro qaq
+"   - Append macro qAq
+"   - Execute macro @a
+" Multiple file editing: bufdo, argdo, windo. argdo vs bufdo: args are the argument files given on start. Can be set.
+"   - :bufdo wq does the same as :wqa.
+"   - :bufdo exe ":normal Gp" | update, pastes to end of every buffer. Update only saves if there was a change.
 
