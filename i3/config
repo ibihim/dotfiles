@@ -54,6 +54,9 @@ bindsym $mod+d exec dmenu_run
 # guake
 bindsym $mod+t exec guake &
 
+# hide/unhide i3status bar
+bindsym $mod+m bar mode toggle
+
 # Start Application
 bindsym $mod+F3 exec nautilus &
 bindsym $mod+Shift+F3 exec gksu nautilus &
@@ -86,7 +89,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+c border toggle
 
 # scratchpad
-bindsym $mod+m move scratchpad
+bindsym $mod+Shift+o move scratchpad
 bindsym $mod+o scratchpad show
 
 # split in horizontal orientation
