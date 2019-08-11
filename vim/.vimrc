@@ -57,6 +57,9 @@ let g:deoplete#enable_at_startup = 1
 
 " => Vim-Go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_metalinter_command='golangci-lint'
 
 let g:go_snippet_engine = "ultisnips"
 let g:go_fmt_command = "goimports"
