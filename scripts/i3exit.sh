@@ -16,10 +16,10 @@ case "$1" in
         dm-tool switch-to-greeter
         ;;
     suspend)
-        lockscreen && $logind suspend
+        xsecurelock && $logind suspend
         ;;
     hibernate)
-        lockscreen && $logind hibernate
+        xsecurelock && $logind hibernate
         ;;
     reboot)
         $logind reboot

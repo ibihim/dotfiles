@@ -2,9 +2,10 @@
 
 WORKINGDIR=$HOME/scripts/setup-device
 
-source $WORKINGDIR/home-background.sh
+source $WORKINGDIR/home-screen.sh
 source $WORKINGDIR/work-mouse.sh
-source $WORKINGDIR/home-lockscreen.sh
+
+feh --bg-fill ~/Pictures/347106.jpg
 
 killall -SIGUSR1 conky
 
