@@ -7,5 +7,5 @@
 ########################################################################
 
 xrandr --output HDMI1 --mode 3840x2160 --above eDP1
-feh --randomize --bg-fill ~/Pictures/wallpaper-horizontal
+feh --randomize --bg-fill ~/Pictures
 

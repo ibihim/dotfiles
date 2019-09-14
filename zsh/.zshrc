@@ -112,6 +112,7 @@ DEFAULT_USER=ibihim
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias lock="i3lock -i ~/Pictures/lock.png"
 alias pbcopy='xclip -sel clip'
 alias screenshot='import -window root /tmp/screenshot.jpg'
 alias crop='scrot -s'
@@ -119,6 +120,13 @@ alias gl="git log --graph --abbrev-commit --date=relative --pretty=format:'%Cred
 alias goplay='cd $(mktemp -d) && $EDITOR main.go && go run main.go'
 alias v='nvim'
 alias cdtemp='cd $(mktemp -d)'
+alias tma='$HOME/scripts/tmux-add.sh'
+alias tmw='$HOME/scripts/tmux-watcher.sh'
+alias tmd='tmux detach-client'
+alias tml='tmux ls'
+alias tp='tmuxp load .tmux.yaml'
+alias tmk='tmux kill-session'
+alias please='sudo'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
