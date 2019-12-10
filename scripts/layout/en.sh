@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-sudo setxkbmap -layout us
+setxkbmap us
 
