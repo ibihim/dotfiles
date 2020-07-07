@@ -18,7 +18,8 @@ new_float normal
 hide_edge_borders none
 
 gaps inner 10
-workspace 8 gaps outer 150
+gaps outer -2
+# workspace 8 gaps outer 150
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -39,7 +40,8 @@ font pango:monospace 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal &
+# bindsym $mod+Return exec i3-sensible-terminal &
+bindsym $mod+Return exec alacritty &
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -200,7 +202,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 # i3blurlock
-bindsym $mod+9 exec --no-startup-id lockscreen
+bindsym $mod+9 exec --no-startup-id xsecurelock
 
 # exit
 bindsym $mod+0 mode "$mode_system"
@@ -219,6 +221,9 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
+# scaling
+exec xranr --dpi 144
+
 # placing workplace
 workspace 3 output HDMI-1
 workspace 4 output HDMI-1
@@ -234,7 +239,7 @@ workspace 2 output DP-2
 exec --no-startup-id volumeicon &
 
 # background for desktop
-exec --no-startup-id feh --bg-scale /home/ibihim/Pictures/wallpaper.jpg &
+exec --no-startup-id feh --random --bg-scale $HOME/Pictures &
 
 # mouse buttons change
 exec --no-startup-id xmodmap -e "pointer = 3 2 1" &
@@ -244,8 +249,8 @@ exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelt
 
 # palm detection
 exec --no-startup-id synclient PalmDetect=1 &
-exec --no-startup-id synclient PalmMinWidth=4 &
-exec --no-startup-id synclient PalmMinZ=100 &
+exec --no-startup-id synclient PalmMinWidth=3 &
+exec --no-startup-id synclient PalmMinZ=80 &
 
 # Network Manager
 exec --no-startup-id nm-applet &
