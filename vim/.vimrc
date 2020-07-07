@@ -1,55 +1,9 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugin
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"NeoBundle Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath^=/home/ibihim/.vim/bundle/neobundle.vim/
-
-" Required:
-call neobundle#begin(expand('/home/ibihim/.vim/bundle'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'shougo/deoplete.nvim'
-NeoBundle 'sirver/ultisnips'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-fugitive'
-
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
-" Required:
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts-------------------------
-
 " => UltiSnip
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/ultisnips']
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/pack/sirver/start/ultisnips']
 
 " => deoplete.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -57,6 +11,7 @@ let g:deoplete#enable_at_startup = 1
 
 " => Vim-Go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_metalinter_command='golangci-lint'
@@ -80,6 +35,22 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_trypes = 1
 let g:go_highlight_build_constraints = 1
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FZF / RG
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map ; :Rg<CR>
+map <C-p> :Files<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ale
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:ale_linters = {'go': ['golangci-lint']}
+" let g:ale_go_golangci_lint_options ='--fast'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Rainbow
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rainbow_active = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -246,16 +217,11 @@ map <leader>bd :Bclose<cr>
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
 
-" Tab navigation like Firefox.
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR
+" Useful mappings for managing tabs
+map <leader>tt :tabnew<cr>
+map <leader>tn :tabnext<cr>
+map <leader>td :tabclose<cr>
 
-nnoremap <C-Insert> :tabnew<CR>
-nnoremap <C-Delete> :tabclose<CR>
 
 " Opens a new tab with the current buffer's path
 
@@ -458,7 +424,7 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
-map <leader>m :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 
 set foldmethod=syntax
 
@@ -516,10 +482,17 @@ augroup toggle_relative_number
     autocmd InsertLeave * :setlocal relativenumber
 
 " vimgrep and simple rotation.
-map <leader>g :vimgrep
+map <leader>vg :vimgrep
 map <leader>c :cn<cr>
 map <leader>C :cp<cr>
 map <leader>cl :clist<cr>
+
+" go to definition, "gd"
+nmap <leader>g :GoDef<CR>
+" auto complate
+map <leader>ga <C-x><C-o><cr>
+" auto complete by default
+au filetype go inoremap <buffer> . .<C-x><C-o>
 
 " Notes
 " Visual Block Mode: C-V, to use c, i, x or d, use upper case.
