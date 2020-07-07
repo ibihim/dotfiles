@@ -3,11 +3,11 @@
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/pack/sirver/start/ultisnips']
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/pack/ibihim/start/ultisnips']
 
 " => deoplete.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 " => Vim-Go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -139,7 +139,7 @@ if has("gui_running")
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
-" set encoding=utf8
+set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -217,13 +217,17 @@ map <leader>bd :Bclose<cr>
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
 
-" Useful mappings for managing tabs
-map <leader>tt :tabnew<cr>
-map <leader>tn :tabnext<cr>
-map <leader>td :tabclose<cr>
-
-
-" Opens a new tab with the current buffer's path
+" Tab navigation like Firefox.
+map <leader>th :tabprevious<CR>
+map <leader>tl :tabnext<CR>
+map <leader>tn :tabnew<CR>
+map <leader>tk :tabnew<CR>
+map <leader>tj :tabclose<CR>
+"inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+"inoremap <C-tab>   <Esc>:tabnext<CR>i
+"inoremap <C-t>     <Esc>:tabnew<CR>
+map <C-Insert> :tabnew<CR>
+map <C-Delete> :tabclose<CR>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -339,7 +343,7 @@ map <leader>s? z=
 noremap <Leader>wm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
+map <leader>bq :e ~/buffer<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
@@ -422,11 +426,14 @@ syntax enable
 " solarized colorscheme
 set background=dark
 let g:solarized_termcolors=256
-colorscheme solarized
+"colorscheme solarized
+colorscheme dracula
 
 map <C-n> :NERDTreeToggle<CR>
 
 set foldmethod=syntax
+set foldlevel=99
+set foldlevelstart=5
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -482,17 +489,10 @@ augroup toggle_relative_number
     autocmd InsertLeave * :setlocal relativenumber
 
 " vimgrep and simple rotation.
-map <leader>vg :vimgrep
+map <leader>g :vimgrep
 map <leader>c :cn<cr>
 map <leader>C :cp<cr>
 map <leader>cl :clist<cr>
-
-" go to definition, "gd"
-nmap <leader>g :GoDef<CR>
-" auto complate
-map <leader>ga <C-x><C-o><cr>
-" auto complete by default
-au filetype go inoremap <buffer> . .<C-x><C-o>
 
 " Notes
 " Visual Block Mode: C-V, to use c, i, x or d, use upper case.
