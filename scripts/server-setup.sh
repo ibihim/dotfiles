@@ -19,11 +19,11 @@ sudo apt install zsh tmux vim curl git docker.io ufw mosh autojump fail2ban unat
 ##########################################################################
 
 # usually one would like to add --encrypt-home (deps encryptfs-utils)
-adduser -m -d /home/ibihim -s /bin/bash -G sudo,docker ibihim
+adduser -m -d $HOME -s /bin/bash -G sudo,docker ibihim
 # use ssh, gnupg confs
-mkdir /home/ibihim/.ssh
-cd && cp -r {.ssh,.gnupg} /home/ibihim
-chown -R ibihim:ibihim /home/ibihim/{.ssh,.gnupg}
+mkdir $HOME/.ssh
+cd && cp -r {.ssh,.gnupg} $HOME
+chown -R ibihim:ibihim $HOME/{.ssh,.gnupg}
 su ibihim && cd
 # test
 sudo ls

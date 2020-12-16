@@ -1,141 +1,97 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-# Path to your oh-my-zsh installation.
-export ZSH=/home/ibihim/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+DEFAULT_USER=ibihim
+ZSH_THEME="../../../../usr/share/zsh-theme-powerlevel10k/powerlevel10k"
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
+  kubectl
 )
+
+source /usr/share/autojump/autojump.zsh
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export LANG=en_US.UTF-8
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-NPM_PACKAGES="${HOME}/.npm-packages"
-if [ ! -f $NPM_PACKAGES ]; then
-    mkdir -p $NPM_PACKAGES
-fi
-
-if command -v most > /dev/null 2>&1; then
-    export PAGER=most
-fi
-export TERM="xterm-256color"
 export GOROOT=/usr/lib/go
-export GOPATH=$HOME/workspace/go
+export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
+export GOPRIVATE=github.com/$ORGANIZATION/*
+
+export TERM="xterm-256color"
 export CHROME_BIN=/usr/bin/chromium
-export CDPATH=$GOPATH/src/github.com
-export PATH=$PATH:$GOPATH/bin:$NPM_PACKAGES/bin
+export CDPATH=$HOME/workspace/src/github.com
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export EDITOR=nvim
 
-DEFAULT_USER=ibihim
+export PATH=$PATH:$GOBIN:$NPM_PACKAGES/bin
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias lock="i3lock -i ~/Pictures/lock.png"
-alias pbcopy='xclip -sel clip'
-alias screenshot='import -window root /tmp/screenshot.jpg'
-alias crop='scrot -s'
-alias gl="git log --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%C(yellow)%d %Cblue%an%C(magenta) (%GK)%C(reset) %s %Cgreen%cr'"
+
+alias glog="git log --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%C(yellow)%d %Cblue%an%C(magenta) (%GK)%C(reset) %s %Cgreen%cr'"
+
 alias goplay='cd $(mktemp -d) && $EDITOR main.go && go run main.go'
-alias v='nvim'
-alias cdtemp='cd $(mktemp -d)'
-alias tma='$HOME/scripts/tmux-add.sh'
-alias tmw='$HOME/scripts/tmux-watcher.sh'
-alias tmd='tmux detach-client'
-alias tml='tmux ls'
-alias tp='tmuxp load .tmux.yaml'
-alias tmk='tmux kill-session'
-alias please='sudo'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias k='kubectl'
+alias kpo='kubectl --context phdp-prod'
+alias kst='kubectl --context phdp-staging'
+alias kde='kubectl --context phdp-dev'
+alias klo='microk8s.kubectl'
+alias hlo='microk8s.helm'
+
+alias tpd='trackpad-disable'
+alias tpe='trackpad-enable'
+
+alias tma='tmux-add'
+alias tmd='tmux detach'
+alias tml='tmux ls'
+alias tp='tmuxp-load'
+
+alias twa='timew start'
+alias twe='timew stop'
+alias tw='timew summary :ids'
+alias tww='timew week'
+alias twl='timew lengthen @1'
+
+alias cdtemp='cd $(mktemp -d)'
+alias v='nvim'
+alias vim='nvim'
+alias man='PAGER=most man'
+alias please='sudo'
+alias ggl='git pull'
+alias theia='docker run -it --init -p 3000:3000 -v "$(pwd):/home/project:cached" theiaide/theia:next'
+alias jira-browse="$HOME/scripts/jira-browse.sh"
+alias pom='timeout 25m mpg123 --loop -1 ~/Music/pomodoro.mp3'
+alias lock='swaylock -f -c 000000'
+alias browsh='docker container run -it browsh/browsh'
+
 
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
     export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
 
-[ -f /usr/share/autojump/autojump.zsh ] && source /usr/share/autojump/autojump.zsh
-
-export GPG_TTY=$(tty)
+# yubikey
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
 gpg-connect-agent updatestartuptty /bye > /dev/null
+
+# nix package manager
+source /etc/profile.d/nix.sh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

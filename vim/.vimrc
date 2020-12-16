@@ -1,20 +1,55 @@
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => LanguageClient Neovim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Bash: sudo npm install -g bash-language-server
+" Dockerfile: sudo npm install -g dockerfile-language-server-nodejs
+" Go: go get -u golang.org/x/tools/gopls
+" JavaScript: sudo npm install -g typescript typescript-language-server
+" Python: pip3 install --user --upgrade 'python-language-server[yapf]'
+" Yaml: sudo npm install -g yaml-language-server
+let g:LanguageClient_serverCommands = {
+    \ 'dockerfile': ['docker-langserver', '--stdio'],
+    \ 'go': ['gopls'],
+    \ 'javascript': ['typescript-language-server', '--stdio'],
+    \ 'python': ['~/.local/bin/pyls'],
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'sh': ['bash-language-server', 'start'],
+    \ 'yaml': ['/usr/lib/node_modules/yaml-language-server/out/server/src/server.js', '--stdio'],
+    \ }
+
+autocmd BufWritePre *.go,*.rs,*.js,*.py :call LanguageClient#textDocument_formatting_sync()
+
+nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+nnoremap <leader>le :call LanguageClient#explainErrorAtPoint()<CR>
+nnoremap <leader>la :call LanguageClient_textDocument_codeAction()<CR>
+nnoremap <leader>gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
 " => UltiSnip
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/pack/ibihim/start/ultisnips']
 
 " => deoplete.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:deoplete#enable_at_startup = 1
 
+" => tokyonight theme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set termguicolors
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+
 " => Vim-Go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_metalinter_command='golangci-lint'
 
 let g:go_snippet_engine = "ultisnips"
 let g:go_fmt_command = "goimports"
@@ -35,7 +70,9 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_trypes = 1
 let g:go_highlight_build_constraints = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:go_null_module_warning = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FZF / RG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map ; :Rg<CR>
@@ -424,10 +461,11 @@ set listchars=tab:⇥\ ,trail:·,eol:⇐
 syntax enable
 
 " solarized colorscheme
-set background=dark
+" set background=dark
 let g:solarized_termcolors=256
 "colorscheme solarized
-colorscheme dracula
+"colorscheme dracula
+colorscheme neonwave
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -435,10 +473,6 @@ set foldmethod=syntax
 set foldlevel=99
 set foldlevelstart=5
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = "\<Space>"
-let g:mapleader = "\<Space>"
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -489,7 +523,7 @@ augroup toggle_relative_number
     autocmd InsertLeave * :setlocal relativenumber
 
 " vimgrep and simple rotation.
-map <leader>g :vimgrep
+" map <leader>g :vimgrep
 map <leader>c :cn<cr>
 map <leader>C :cp<cr>
 map <leader>cl :clist<cr>

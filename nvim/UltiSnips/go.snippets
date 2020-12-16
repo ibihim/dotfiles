@@ -1,0 +1,117 @@
+snippet todo "// TODO ..."
+// TODO-KO `date '+%d.%m.%Y'`: $1
+endsnippet
+
+snippet str "type a struct {...}"
+type $1 struct {
+	$2
+}$0
+endsnippet
+
+snippet prn "fmt.Println"
+fmt.Println(${1:value})$0
+endsnippet
+
+snippet prf "fmt.Printf"
+fmt.Printf(${1:string}, ${2:value})$0
+endsnippet
+
+snippet dbg "fmt.Println(visual)"
+fmt.Println(${VISUAL:default text})
+endsnippet
+
+snippet dbgn "fmt.Println(visual)"
+fmt.Println("${VISUAL:default text}")
+endsnippet
+
+snippet prm "name value newline"
+${1:name}	${2:type}
+endsnippet
+
+snippet prmj "name value json newline"
+${1:name}	${2:type} \`json:"${3:json_name}"\`$0
+endsnippet
+
+snippet if "if a { ... }"
+if $1 {
+	$2
+}$0
+endsnippet
+
+snippet wnt "fmt.Errorf(want != have)"
+fmt.Errorf("want: %${1:s}, have: %${2:s}", ${3:want}, ${4:have})$0
+endsnippet
+
+snippet met "func (this) name (arg) value { ... }" b
+func ($1) $2($3) $4 {
+	$5
+}$0
+endsnippet
+
+snippet fnc "func name (arg) value { ... }"
+func $1($2) $3 {
+	$4
+}$0
+endsnippet
+
+snippet ifc "type name interface {}" b
+type $1 interface {
+	$2
+}$0
+endsnippet
+
+snippet ife "if err != nil { ... }" b
+if err != nil {
+	$1
+}$0
+endsnippet
+
+snippet ifd "if a := b(); a != c { ... }" b
+if ${1:err} := ${2}; ${3:err} != ${4:nil} {
+	$5
+}$0
+endsnippet
+
+snippet iff "if err := foo(); err != nil { ... }" b
+if err := $1; err != nil {
+	$2
+}$0
+endsnippet
+
+snippet app "append(slice, value)"
+$1 = append($1, $2)$0
+endsnippet
+
+snippet fnt "func TestXYZ(t *testing.T) { ... }" b
+func Test$1(t *testing.T) {
+	$0
+}
+endsnippet
+
+snippet forr "for i, a := range as { ... }" b
+for ${1:_}, ${2:item} := range ${3:items} {
+	$4
+}$0
+endsnippet
+
+snippet tt "table test for loop" b
+for _, tc := range [...]struct{
+	name string
+	$1
+}{
+	{
+		name: "$2",
+		$0
+	},
+} {
+	tc := tc
+	t.Run(tc.name, func(t *testing.T){
+
+	})
+}
+endsnippet
+
+snippet erf "fmt.Errorf(hello world %w, value)"
+fmt.Errorf("$1: %w", $2)$0
+endsnippet
+
